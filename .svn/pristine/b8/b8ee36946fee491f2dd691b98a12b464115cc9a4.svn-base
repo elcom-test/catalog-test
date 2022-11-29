@@ -1,0 +1,15 @@
+package com.elcom.catalog.dataservice.service.impl;
+
+import org.modelmapper.ModelMapper;
+
+public class BaseServiceImpl {
+
+	protected <T> Object mapObject(Object inObject, Class<?> outClass) {
+		
+		ModelMapper modelMapper = new ModelMapper();
+		Object outObject = modelMapper.map(inObject, outClass );
+		
+		return outObject;
+	}
+	
+}

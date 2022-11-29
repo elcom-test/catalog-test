@@ -1,0 +1,42 @@
+package com.elcom.catalog.dataservice.root.dto;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class CatalogItemPriceDTO {
+	
+	private Long id;
+	@JsonBackReference(value="catalogItemPrice")
+	private CatalogItemDTO catalogItem;
+	private BigDecimal listPrice;
+	private String currency;
+	private String priceType;
+	private Integer priceBreakMinQty;
+	private Integer priceBreakMaxQty;
+	private Integer priceBreakStyle;
+	private Date validFrom;
+	private Date validTo;
+	private String leadTime;
+	private Integer minOrderQty;
+	private Integer maxOrderQty;
+	private String tax;
+	private String activeFlag;
+	@JsonIgnore
+	private Date dateRowAdded;
+	@JsonIgnore
+	private Date dateRowUpdated;
+}

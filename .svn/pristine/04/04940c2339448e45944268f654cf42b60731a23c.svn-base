@@ -1,0 +1,49 @@
+package com.elcom.catalog.dataservice.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.elcom.catalog.dataservice.repository.CatalogItemPriceRepository;
+import com.elcom.catalog.dataservice.root.CatalogItemPrice;
+import com.elcom.catalog.dataservice.service.CatalogItemPriceService;
+
+
+@Service
+public class CatalogItemPriceServiceImpl implements CatalogItemPriceService {
+	
+	@Autowired
+	CatalogItemPriceRepository catalogItemPriceRepository;
+
+	@Override
+	public Optional<CatalogItemPrice> getCatalogItemPrice(CatalogItemPrice catalogItemPrice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<CatalogItemPrice> getCatalogItemPriceById(Long id) {
+		return catalogItemPriceRepository.findById(id);
+	}
+
+	@Override
+	public void saveCatalogItemPrice(CatalogItemPrice catalogItemPrice) {
+		catalogItemPriceRepository.saveAndFlush(catalogItemPrice);
+		
+	}
+
+	@Override
+	public void deleteCatalogItemPriceService(Long id) {
+		catalogItemPriceRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public List<CatalogItemPrice> getAllCatalogItemPrices() {
+		return catalogItemPriceRepository.findAll();
+	}
+
+	
+}

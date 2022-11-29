@@ -1,0 +1,43 @@
+package com.elcom.catalog.dataservice.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.elcom.catalog.dataservice.repository.CompanyRepository;
+import com.elcom.catalog.dataservice.root.Company;
+import com.elcom.catalog.dataservice.service.CompanyService;
+
+@Service
+public class CompanyServiceImpl implements CompanyService {
+	
+	@Autowired
+	CompanyRepository companyRepository;
+
+	@Override
+	public Optional<Company> getCompany(Company company) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<Company> getCompanyById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveCompanyAttrbute(Company company) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Company> searchCompany(String searchCriteria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

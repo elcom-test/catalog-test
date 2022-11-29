@@ -1,0 +1,18 @@
+package com.elcom.catalog.dataservice.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.elcom.catalog.dataservice.root.Company;
+import com.elcom.catalog.dataservice.root.dto.CompanyDTO;
+
+public interface CompanyService {
+	
+	public Optional<Company> getCompany(Company companyDTO);
+	public CompanyDTO getCompanyById(Long id);
+	public CompanyDTO saveCompany(CompanyDTO companyDTO);	
+	// hibernate search methods
+	public List<Company> searchCompany(String searchCriteria);
+
+
+}

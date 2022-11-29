@@ -1,0 +1,28 @@
+package com.elcom.catalog.dataservice.root.dto;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CatalogItemAttributeDTO {
+
+	private Long id;
+
+	private CatalogItemDTO catalogItem;
+	
+	private String key;
+
+	private String value;
+
+	private String activeFlag;
+
+	@JsonIgnore
+	private Date dateRowAdded;
+	@JsonIgnore
+	private Date dateRowUpdated;
+
+}

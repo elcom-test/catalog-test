@@ -1,0 +1,18 @@
+package com.elcom.catalog.dataservice.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.elcom.catalog.dataservice.root.UserAuthId;
+
+public interface UserAuthIdService {
+	
+
+	public Optional<UserAuthId> getUserAuthId(UserAuthId userAuthId);
+	public Optional<UserAuthId> getUserAuthIdById(Long id);
+	public void saveUserAuthIdAttrbute(UserAuthId userAuthId);	
+	// hibernate search methods
+	public List<UserAuthId> searchUserAuthId(String searchCriteria);
+	
+
+}

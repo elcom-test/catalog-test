@@ -1,0 +1,12 @@
+package com.elcom.catalog.dataservice.service;
+
+import java.util.List;
+
+import com.elcom.catalog.dataservice.root.SICCode;
+
+public interface SICCodesLookupService {
+	Iterable<SICCode> getAllSICCodesLookups();
+	SICCode saveSICCodesLookup(SICCode standardType);
+	List<SICCode> getAllSICCodesLookupsList();
+	SICCode getSICCodesLookupByName(String SICCodesLookupNme);
+}

@@ -1,0 +1,17 @@
+package com.elcom.catalog.dataservice.root;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.Builder.Default;
+
+@Builder
+@Data
+public class DataServiceResponse {
+	
+	private Object dto;
+	
+	private String responseMessage;
+	
+	@Default
+	private Boolean isSuccess = true;
+}

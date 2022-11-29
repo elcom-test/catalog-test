@@ -1,0 +1,34 @@
+package com.elcom.catalog.dataservice.root.dto;
+
+import java.util.Date;
+import java.util.Set;
+
+import com.elcom.catalog.dataservice.root.ItemAsset;
+import com.elcom.catalog.dataservice.root.ItemChangeLog;
+import com.elcom.catalog.dataservice.root.ItemTaxonomy;
+
+import lombok.Data;
+
+@Data
+public class ItemDTO {
+
+	private Long id;
+	private String name;
+	private String type;
+	private String description;
+	private String longDescription;
+	private String uom;
+	private String synonyms;
+	private float msrp;
+	private String replacementMfgrNo;
+	private long gs1GpcCode;
+	private Set<ItemTaxonomy> itemTaxonomy;
+	private ItemChangeLog itemChangeLog;
+	private ItemAsset itemAsset;
+	private Set<ItemBarcodeDTO> itemBarCode;
+	private Set<CatalogItemDTO> catalogItem;
+	private String activeFlag;
+	private Date dateRowAdded;
+	private Date dateRowUpdated;
+	
+}

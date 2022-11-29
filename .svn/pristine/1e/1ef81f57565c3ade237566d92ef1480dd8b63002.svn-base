@@ -1,0 +1,22 @@
+package com.elcom.catalog.dataservice.root.dto;
+
+import java.util.Date;
+
+import com.elcom.catalog.dataservice.root.Item;
+
+import lombok.Data;
+
+@Data
+public class ItemAttributeDTO {
+
+	private Long id;
+	private Item item;
+	private String attributeId;
+	private String type;
+	private String key;
+	private String value;
+	private String activeFlag;
+	private Date dateRowAdded;
+	private Date dateRowUpdated;
+	
+}

@@ -1,0 +1,98 @@
+package com.elcom.catalog.dataservice.web;
+
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.elcom.catalog.dataservice.root.DataServiceResponse;
+import com.elcom.catalog.dataservice.root.dto.CatalogDTO;
+import com.elcom.catalog.dataservice.root.dto.ItemDTO;
+import com.elcom.catalog.dataservice.search.model.SearchCriteria;
+import com.elcom.catalog.dataservice.search.model.SearchResponse;
+import com.elcom.catalog.dataservice.service.CatalogService;
+
+import io.swagger.annotations.ApiOperation;
+
+@RestController
+@RequestMapping("/catalog")
+public class CatalogController extends BaseController {
+
+	private CatalogService catalogService;
+
+	@Autowired
+	private CatalogController(CatalogService catalogService) {
+		this.catalogService = catalogService;
+	}
+
+
+
+	@ApiOperation(value = "Fetches a master catalog from the database",
+			notes = "<p>This method fetches a master catalog from the database.</p>")
+	@GetMapping("/{catId}")
+	public ResponseEntity<DataServiceResponse> getItem(@PathVariable("catId") Long catId) {
+
+		Optional<CatalogDTO> item = catalogService.getCatalogById(catId);
+
+		return buildResponse(item);
+	}
+
+
+	@ApiOperation(value = "Persists a master product catalog in the database",
+			notes = "<p>This method persists a master catalog in the database. If an id is provided the record (if found will be updated).</p>")
+	@PostMapping
+	public ResponseEntity<DataServiceResponse> saveItem(@Valid @RequestBody CatalogDTO catalogDTO, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			return buildBadRequestResponse(catalogDTO, bindingResult);
+		}
+
+		try {
+			catalogService.saveCatalog(catalogDTO);
+		} catch(Exception e) {
+			return buildBadRequestResponse("The catalog record could not be saved. Error encountered: "+e.getMessage());
+		}
+
+		return buildResponse(catalogDTO);
+
+	}
+
+
+	@ApiOperation(value = "Toggles the status of a master catalog",
+			notes = "<p>This method toggles the status of a master catalog - this can be used as a shortcut to enable / disable catalogs.</p>")
+	@GetMapping("/toggle-status/{catalogId}")
+	public ResponseEntity<DataServiceResponse> toggleStatus(@PathVariable("catalogId") Long catalogId) {
+
+		CatalogDTO catalogDTO = catalogService.togglecatalogActiveStatus(catalogId);
+		return buildResponse(catalogDTO);
+	}
+	
+	
+	@ApiOperation(value = "Searches for a master catalog",
+			notes = "<p>This method searches a master catalog - it uses different properties as search criteria.</p>")
+	@GetMapping("/toggle-status/{catalogId}")
+
+
+	@PostMapping("/search")
+	public ResponseEntity<DataServiceResponse> searchCatalog(@Valid @RequestBody SearchCriteria searchCriteria, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			return buildBadRequestResponse(searchCriteria, bindingResult);
+		}
+
+		SearchResponse searchResponse = catalogService.searchCatalog(searchCriteria);
+		return buildResponse(searchResponse);
+	}
+
+
+
+}

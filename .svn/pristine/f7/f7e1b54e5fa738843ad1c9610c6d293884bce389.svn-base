@@ -1,0 +1,54 @@
+package com.elcom.catalog.dataservice.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.elcom.catalog.dataservice.repository.ItemAttributeRepository;
+import com.elcom.catalog.dataservice.root.ItemAttribute;
+import com.elcom.catalog.dataservice.root.dto.ItemAttributeDTO;
+import com.elcom.catalog.dataservice.service.ItemAttributeService;
+@Service
+public class ItemAttrubuteServiceImpl extends BaseServiceImpl implements ItemAttributeService {
+
+	@Autowired
+	ItemAttributeRepository itemAttributeRepository; 
+	@Override
+	public Optional<ItemAttribute> getItemAttribute(ItemAttribute itemAttribute) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<ItemAttribute> getItemAttributeById(Long id) {
+		// TODO Auto-generated method stub
+		return itemAttributeRepository.findById(id);
+	}
+
+	@Override
+	public ItemAttributeDTO saveItemAttribute(ItemAttributeDTO itemAttributeDTO) {
+		
+		ItemAttribute itemAttribute = (ItemAttribute) mapObject(itemAttributeDTO, ItemAttribute.class);
+		itemAttribute = itemAttributeRepository.saveAndFlush(itemAttribute);
+		
+		return (ItemAttributeDTO) mapObject(itemAttribute, ItemAttributeDTO.class);
+		
+	}
+
+	@Override
+	public void deleteItemAttribute(Long id) {
+		itemAttributeRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public List<ItemAttribute> getAllItemAttributes() {
+		// TODO Auto-generated method stub
+		return itemAttributeRepository.findAll();
+	}
+
+
+
+}

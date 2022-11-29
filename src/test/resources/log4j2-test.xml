@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="name">ecdatamodel</Property>
+		<Property name="pattern">[%t] %d{yyyy-MM-dd HH:mm:ss.SSS} | %-5.5p | %20C:%-5.5L | %msg%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}"/>
+		</Console>
+		
+		<Routing name="RoutingAppender">
+			<Routes pattern="$${ctx:logFileName}">
+            	<Route>
+					<RollingFile name="${name}${ctx:logFileName}"
+								 fileName="${sys:catalina.base}/logs/${name}${ctx:logFileName:-}.log" 
+								 filePattern="${sys:catalina.base}/logs/${name}/${name}-backup/${name}${ctx:logFileName:-}-%d{yyyy-MM-dd}-%i.log">
+						<PatternLayout>
+							<pattern>${pattern}</pattern>
+						</PatternLayout>
+						<Policies>
+							<TimeBasedTriggeringPolicy/>
+							<!-- Rotated everyday -->
+							<SizeBasedTriggeringPolicy size="20 MB"/>
+							<!-- Or every 20 MB -->
+						</Policies>
+					</RollingFile>
+				</Route>
+			</Routes>
+		</Routing>
+		
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<!-- Uncomment the below LINE only in your local if you want it to console -->
+			 <appender-ref ref="Console"/>
+<!-- 			<appender-ref ref="RoutingAppender"/> -->
+		</Root>
+	</Loggers>
+</Configuration>

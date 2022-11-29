@@ -1,0 +1,22 @@
+package com.elcom.catalog.dataservice.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.elcom.catalog.dataservice.root.ItemAttribute;
+import com.elcom.catalog.dataservice.root.dto.ItemAttributeDTO;
+
+public interface ItemAttributeService {
+	
+	public Optional<ItemAttribute> getItemAttribute(ItemAttribute itemAttribute);
+	public Optional<ItemAttribute> getItemAttributeById(Long id);
+	public ItemAttributeDTO saveItemAttribute(ItemAttributeDTO itemAttribute);	
+	
+	
+	public void deleteItemAttribute(Long id);
+	public List<ItemAttribute> getAllItemAttributes();
+	
+
+	
+
+}

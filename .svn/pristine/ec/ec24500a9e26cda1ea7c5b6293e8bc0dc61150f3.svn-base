@@ -1,0 +1,20 @@
+package com.elcom.catalog.dataservice.root.dto;
+
+import java.util.Date;
+
+import com.elcom.catalog.dataservice.root.Item;
+
+import lombok.Data;
+
+@Data
+public class ItemChangeLogDTO {
+
+	private Long id;
+	private Item item;
+	private String type;
+	private String information;
+	private String activeFlag;
+	private Date dateRowAdded;
+	private Date dateRowUpdated;
+	
+}

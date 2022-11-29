@@ -1,0 +1,12 @@
+package com.elcom.catalog.dataservice.service;
+
+import java.util.List;
+
+import com.elcom.catalog.dataservice.root.UNSPSCCodesLookup;
+
+public interface UNSPSCCodesLookupService {
+	Iterable<UNSPSCCodesLookup> getAllUNSPSCCodesLookups();
+	UNSPSCCodesLookup saveUNSPSCCodesLookup(UNSPSCCodesLookup standardType);
+	List<UNSPSCCodesLookup> getAllUNSPSCCodesLookupsList();
+	UNSPSCCodesLookup getUNSPSCCodesLookupByName(String UNSPSCCodesLookupNme);
+}

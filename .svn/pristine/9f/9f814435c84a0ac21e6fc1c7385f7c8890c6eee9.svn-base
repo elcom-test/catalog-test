@@ -1,0 +1,48 @@
+package com.elcom.catalog.dataservice.root.dto;
+
+import java.util.Date;
+
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.elcom.catalog.dataservice.validation.Conditional;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Builder.Default;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Validated
+@Conditional(selected="action", values={"delete"}, required={"item"})
+@Conditional(selected="action", values={"add"}, required={"item","type","key","value"})
+public class ItemAttributeDTO {
+
+	private Long id;
+	@JsonBackReference(value="itemAttribute")
+	private ItemDTO item;
+	@NotBlank(message="An item attribute type is required")
+	private String type;
+	@NotBlank(message="An item attribute key is required")
+	private String key;
+	@NotBlank(message="An item attribute value is required")
+	private String value;
+	@Default
+	private String activeFlag = "Y";
+	@JsonIgnore
+	private Date dateRowAdded;
+	@JsonIgnore
+	private Date dateRowUpdated;
+	
+	private String action;
+	
+}

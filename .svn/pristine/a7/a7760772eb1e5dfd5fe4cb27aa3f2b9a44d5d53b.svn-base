@@ -1,0 +1,74 @@
+package com.elcom.catalog.dataservice.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.elcom.catalog.dataservice.repository.CatalogItemRepository;
+import com.elcom.catalog.dataservice.root.CatalogItem;
+import com.elcom.catalog.dataservice.root.Item;
+import com.elcom.catalog.dataservice.root.ItemAttribute;
+import com.elcom.catalog.dataservice.root.dto.CatalogItemDTO;
+import com.elcom.catalog.dataservice.root.dto.CatalogItemDetachedDTO;
+import com.elcom.catalog.dataservice.root.dto.ItemAttributeDTO;
+import com.elcom.catalog.dataservice.service.CatalogItemService;
+@Service
+public class CatalogItemServiceImpl extends BaseServiceImpl implements CatalogItemService {
+
+	@Autowired
+	CatalogItemRepository catalogItemRepository;
+
+	@Override
+	public Optional<CatalogItem> getCatalogItem(CatalogItem catalogItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<CatalogItem> getCatalogItemById(Long id) {	
+		return catalogItemRepository.findById(id);
+	}
+
+	@Override
+	public void saveCatalogItem(CatalogItem catalogItem) {
+		catalogItemRepository.saveAndFlush(catalogItem);
+	}
+
+	@Override
+	public void deleteCatalogItem(Long id) {
+		catalogItemRepository.deleteById(id);
+	}
+
+	@Override
+	public List<CatalogItem> getAllCatalogItems() {
+		return catalogItemRepository.findAll();
+	}
+
+	@Override
+	public CatalogItemDTO saveDetachedCatalogItem(CatalogItemDetachedDTO catalogItemDTO) {
+
+
+		CatalogItem catalogItemtemAttribute = (CatalogItem) mapObject(catalogItemDTO, CatalogItem.class);
+
+		// get a list of the properites that aren't in the detached catalog item and put them in
+		
+//		Optional<Item> item = itemRepository.findById(itemAttributeDTO.getItemId());
+//		if(item.isPresent()) {
+//			itemAttribute.setItem(item.get());
+//		}
+//		else {
+//			return null; // controller will handle this with a bad request
+//		}
+		
+		//save the item to the DB
+//		itemAttribute = itemAttributeRepository.saveAndFlush(itemAttribute);
+//
+//		return (ItemAttributeDTO) mapObject(itemAttribute, ItemAttributeDTO.class);
+		return null;
+	}
+
+}

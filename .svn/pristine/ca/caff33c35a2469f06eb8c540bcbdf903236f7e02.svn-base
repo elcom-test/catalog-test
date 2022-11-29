@@ -1,0 +1,22 @@
+package com.elcom.catalog.dataservice.root.dto;
+
+import com.elcom.catalog.dataservice.validation.Conditional;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Conditional(selected="action", values={"delete"}, required={"id"}, message="An item attribute id is required for delete operation")
+@Conditional(selected="action", values={"add"}, required={"itemId","type","key","value"}, message="Values for item, key, value and type are required when saving or updating item attributes")
+public class ItemAttributeDetachedDTO extends ItemAttributeBaseDTO { 
+	
+	private Long itemId;
+	
+	private String action;
+	
+}

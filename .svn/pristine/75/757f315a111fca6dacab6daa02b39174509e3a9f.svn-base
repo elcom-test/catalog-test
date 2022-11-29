@@ -1,0 +1,17 @@
+package com.elcom.catalog.dataservice.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.elcom.catalog.dataservice.root.CatalogItemAttribute;
+import com.elcom.catalog.dataservice.root.ItemAsset;
+
+public interface ItemAssetService {
+	
+	public Optional<ItemAsset> getItemAsset(ItemAsset itemAsset);
+	public Optional<ItemAsset> getItemAssetById(Long id);
+	public void saveItemAsset(ItemAsset itemAsset);		
+	public void deleteItemAsset(Long id);
+	public List<ItemAsset> getAllItemAssets();
+	
+}

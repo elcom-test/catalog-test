@@ -1,0 +1,44 @@
+package com.elcom.catalog.dataservice.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.elcom.catalog.dataservice.repository.CatalogItemRepository;
+import com.elcom.catalog.dataservice.root.CatalogItem;
+import com.elcom.catalog.dataservice.service.CatalogItemService;
+
+public class CatalogItemServiceImpl implements CatalogItemService {
+	
+	@Autowired
+	CatalogItemRepository catalogItemRepository;
+
+	@Override
+	public Optional<CatalogItem> getCatalogItem(CatalogItem catalogItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<CatalogItem> getCatalogItemById(Long id) {	
+		return catalogItemRepository.findById(id);
+	}
+
+	@Override
+	public void saveCatalogItem(CatalogItem catalogItem) {
+		catalogItemRepository.saveAndFlush(catalogItem);
+	}
+
+	@Override
+	public void deleteCatalogItem(Long id) {
+		catalogItemRepository.deleteById(id);
+	}
+
+	@Override
+	public List<CatalogItem> getAllCatalogItems() {
+		
+		return catalogItemRepository.findAll();
+	}
+
+}

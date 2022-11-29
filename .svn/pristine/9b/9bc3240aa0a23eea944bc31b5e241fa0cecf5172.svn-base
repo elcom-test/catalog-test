@@ -1,0 +1,28 @@
+package com.elcom.catalog.dataservice.web;
+
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+import com.elcom.catalog.dataservice.root.DataServiceResponse;
+
+public class BaseController {
+
+	protected ResponseEntity<DataServiceResponse> buildResponse(Object object) {
+
+		DataServiceResponse response = DataServiceResponse.builder().build();
+		
+		if (object != null) {
+			response.setDto(object);
+		}
+		else {
+			response.setResponseMessage("Data could not be retrieved");
+			response.setIsSuccess(false);
+		}
+		
+		return ResponseEntity
+			.ok()
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(response);
+	}
+	
+}

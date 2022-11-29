@@ -1,0 +1,66 @@
+package com.elcom.catalog.dataservice.root.dto;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
+public class CatalogItemPriceDTO {
+
+	
+	private Long id;
+
+	
+	private CatalogItemDTO catalogItem;
+	
+	
+	private BigDecimal listPrice;
+
+	
+	private String currency;
+	
+	
+	private String priceType;
+	
+	
+	private Integer priceBreakMinQty;
+	
+	
+	private Integer priceBreakMaxQty;
+	
+	
+	private Integer priceBreakStyle;
+	
+
+	private Date validFrom;
+	
+
+	private Date validTo;
+	
+	
+	private String leadTime;
+	
+	
+	private Integer minOrderQty;
+	
+	
+	private Integer maxOrderQty;
+	
+	
+	private String tax;
+	
+	
+	private String activeFlag;
+
+	@JsonIgnore
+	private Date dateRowAdded;
+
+	@JsonIgnore
+	private Date dateRowUpdated;
+
+ 
+
+}

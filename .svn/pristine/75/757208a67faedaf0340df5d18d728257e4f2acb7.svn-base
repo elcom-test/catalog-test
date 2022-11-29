@@ -1,0 +1,32 @@
+package com.elcom.catalog.dataservice.root.dto;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public abstract class CatalogItemBaseDTO {
+	
+	protected Long id;
+	
+	protected String type;
+	protected String name;
+	protected String supplierPartNo;
+	protected String description;
+	protected String activeFlag = "Y";// default val, can add validation instead later?
+	
+	@JsonIgnore
+	protected Date dateRowAdded;
+	@JsonIgnore
+	protected Date dateRowUpdated;
+	
+
+}

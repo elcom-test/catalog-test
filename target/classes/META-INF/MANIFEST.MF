@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 17
+Implementation-Title: evolvecatalogdatamodel
+Implementation-Version: 2.0
+Build_Time: 
+Created-By: Maven Integration for Eclipse
+Evolve_Catalog_DataModel_Build_Version: 
+

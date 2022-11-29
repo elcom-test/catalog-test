@@ -1,0 +1,59 @@
+package com.elcom.catalog.dataservice.service.impl;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.elcom.catalog.dataservice.repository.CompanyRepository;
+import com.elcom.catalog.dataservice.root.Company;
+import com.elcom.catalog.dataservice.root.dto.CompanyDTO;
+import com.elcom.catalog.dataservice.search.dao.impl.SearchDaoImpl;
+import com.elcom.catalog.dataservice.search.model.SearchCriteria;
+import com.elcom.catalog.dataservice.search.model.SearchResponse;
+import com.elcom.catalog.dataservice.service.CompanyService;
+
+@Service
+public class CompanyServiceImpl extends BaseServiceImpl implements CompanyService {
+	
+	@Autowired
+	CompanyRepository companyRepository;
+
+	@Autowired
+	private SearchDaoImpl searchDao;
+	
+	@Override
+	public Optional<Company> getCompany(Company company) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CompanyDTO getCompanyById(Long id) {
+		Optional<Company> company = companyRepository.findById(id);
+		
+		if (company.isPresent()) {
+			return (CompanyDTO) mapObject(company.get(), CompanyDTO.class);
+		}
+		return null;
+	}
+
+	@Override
+	public CompanyDTO saveCompany(CompanyDTO companyDTO) {
+		
+		Company company = (Company) mapObject(companyDTO, Company.class);
+		company = companyRepository.saveAndFlush(company);
+			
+		return (CompanyDTO) mapObject(company, CompanyDTO.class);
+	}
+
+	@Override
+	public SearchResponse searchCompany(SearchCriteria searchCriteria) {
+
+		searchCriteria.setFieldToSearch("company.combined");
+		searchCriteria.setObjectToSearch(Company.class);
+		searchCriteria.setObjectToReturn(CompanyDTO.class);
+		
+		return searchDao.search(searchCriteria);
+	}
+}
